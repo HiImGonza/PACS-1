@@ -74,8 +74,10 @@ int main() {
         auto start = std::chrono::steady_clock::now();
         for(size_t i = 0; i < current_threads; ++i) {
             auto begin_end = get_chunk_begin_end(chunks, i);
-            thread_vector.push_back(std::thread(saxpy<vf>, std::ref(z), A,
-                    std::ref(x), std::ref(y), begin_end.first, begin_end.second));
+            thread_vector.push_back(
+                std::thread(saxpy<vf>, std::ref(z), A,
+                    std::ref(x), std::ref(y), begin_end.first, begin_end.second)
+                );
             std::cout << i << ", " << begin_end.first << ", " << begin_end.second << std::endl;
         }
 
